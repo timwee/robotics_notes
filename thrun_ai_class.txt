@@ -1,0 +1,50 @@
+Localization
+##############################################################################################################
+
+Particle Filters
+-----------------
+
+
+Kalman Filters
+-----------------
+- http://www.andrewng.org/portfolio/discriminative-training-of-kalman-filters/
+
+
+##############################################################################################################
+Planning
+-------------
+
+A*
+-------------
+- heuristic function estimation
+
+##############################################################################################################
+PID controller
+-----------
+1. proportional to error
+2. diff between prev and current errors
+3. Integral over all errors (can start tracking this later in time)
+
+"Twiddle"/coordinate ascent
+-----------
+- Optimizer for PID controller params
+	- hold all other params constant and optimize params one by one
+
+
+#############################################################################################################
+Basic (pre-slam)
+------------------
+1. Discrete planner like A*
+2. Smoother
+	- gradient descent, minimize both:
+		a. x_i - y_i
+			x_i is from planner. y_i is what we smoothed
+		b. y_i+1 - y_i
+			distance taken per time step t.
+	- has single equation for optimization
+	- keep updating until total change is < tolerance, just like most gradient descent algos
+3. Controller/PID
+
+#############################################################################################################
+SLAM
+------------

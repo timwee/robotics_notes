@@ -48,3 +48,23 @@ Basic (pre-slam)
 #############################################################################################################
 SLAM
 ------------
+
+He only covers graph based SLAM.
+
+Linear GraphSLAM
+------------
+The following flows out of an assumption of Gaussian noise per edge/constraint in the graph, and we want to do Maximum likelihood of gaussians.
+1. Represent constraints in a matrix.
+	Constraints can be:
+	a. move constraints (x1 -> x2)
+	b. start constraint
+	c. constraints related to landmarks
+2. Invert Matrix to get values of locations and landmarks
+
+#############################################################################################################
+Correspondence problem
+-----------------------
+- ransack
+
+
+

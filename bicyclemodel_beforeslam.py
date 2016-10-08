@@ -9,6 +9,17 @@
 # error for the case of a segmented path. You will
 # need to include the equations shown in the video.
 #
+
+""" 
+main loop
+
+    path = plan(grid, init, goal)
+    path.astar()
+    path.smooth(weight_data, weight_smooth)
+    # spath is smoothed path
+    return run(grid, goal, path.spath, [p_gain, d_gain])
+
+"""
  
 from math import *
 import random
@@ -571,6 +582,7 @@ print main(grid, init, goal, steering_noise, distance_noise, measurement_noise,
 
 
 def twiddle(init_params):
+    """ error function - 100 * num_collisions, 1 * num_steps """
     n_params   = len(init_params)
     dparams    = [1.0 for row in range(n_params)]
     params     = [0.0 for row in range(n_params)]
@@ -580,6 +592,7 @@ def twiddle(init_params):
         params[i] = init_params[i]
 
 
+    # average error over K runs
     best_error = 0.0;
     for k in range(K):
         ret = main(grid, init, goal, 
@@ -598,6 +611,7 @@ def twiddle(init_params):
             params[i] += dparams[i]
             err = 0
             for k in range(K):
+                # [myrobot.check_goal(goal), myrobot.num_collisions, myrobot.num_steps]
                 ret = main(grid, init, goal, 
                            steering_noise, distance_noise, measurement_noise, 
                            params[0], params[1], params[2], params[3], best_error)
